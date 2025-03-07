@@ -204,7 +204,7 @@ Let’s add to our list of artefacts
 
 A(1) - `119.241.22.121`
 A(2):`168.22.54.119`
-A(3): `Plugin name: simple-file-list; Upload Post Path: /wp-content/plugins/simple-file-list/ee-upload-engine.php; Upload GET Path: /wp-content/uploads/simple-file-list; Uploaded File: fr34k.png; 2nd Post Path: /wp-content/plugins/simple-file-list/ee-file-engine.php; 2nd Referrer URL: [http://172.21.0.3/wp-admin/admin.php?page=ee-simple-file-list&tab=file_list&eeListID=1](http://172.21.0.3/wp-admin/admin.php?page=ee-simple-file-list&tab=file_list&eeListID=1); Renamed-to: fr34k.php`
+A(3): `Plugin name: simple-file-list; Upload Post Path: /wp-content/plugins/simple-file-list/ee-upload-engine.php; Upload GET Path: /wp-content/uploads/simple-file-list; Uploaded File: fr34k.png; 2nd Post Path: /wp-content/plugins/simple-file-list/ee-file-engine.php; 2nd Referrer URL: http://172.21.0.3/wp-admin/admin.php?page=ee-simple-file-list&tab=file_list&eeListID=1; Renamed-to: fr34k.php`
 A(4): `103.69.55.212` 
 
 Subsequently, various POST and GET requests are sent to the fr34k.php.
