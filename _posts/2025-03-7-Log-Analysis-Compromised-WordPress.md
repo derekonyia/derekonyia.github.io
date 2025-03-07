@@ -54,7 +54,7 @@ A(2):`168.22.54.119`
 Something of note — that aligns with the scenario’s hypothesis — involves a plugin, simple-file-list. 
 On line 1714, A(1) made a POST request to an endpoint “/wp-content/plugins/simple-file-list/ee-upload-engine.php “ — based on the naming convention, this suggests a file was uploaded and then followed by a GET request on line 1715, requesting to access a png file, fr34k.png, I would assume this was the uploaded file. 
 
-On line 1716, the POST request was to another endpoint, “/wp-content/plugins/simple-file-list/ee-file-engine.php” with referrer, “hxxp[://]172[.]21[.]0[.]3/wp-admin/admin[.]php?page=ee-simple-file-list&tab=file_list&eeListID=1” — the naming conventions suggest that uploaded files were viewed, then a file operation was performed on a file.
+On line 1716, the POST request was to another endpoint, “/wp-content/plugins/simple-file-list/ee-file-engine.php” with referrer, “/wp-admin/admin.php?page=ee-simple-file-list&tab=file_list&eeListID=1” — the naming conventions suggest that uploaded files were viewed, then a file operation was performed on a file.
 
 This is similar to a popular technique used by hackers; they first upload a malicious file and then execute the file to gain a shell. In most cases, they’re extension restrictions, so they use an acceptable extension and then try to change it back to the original later on
 
@@ -66,7 +66,7 @@ Let’s collect artefacts from the above
 
 A(1) - `119.241.22.121`
 A(2):`168.22.54.119`
-A(3): Plugin name: simple-file-list; Upload Post Path: /wp-content/plugins/simple-file-list/ee-upload-engine.php; Upload GET Path: /wp-content/uploads/simple-file-list; Uploaded File: fr34k.png; 2nd Post Path: /wp-content/plugins/simple-file-list/ee-file-engine.php; 2nd Referrer URL: hxxp[://]172[.]21[.]0[.]3/wp-admin/admin[.]php?page=ee-simple-file-list&tab=file_list&eeListID=1
+A(3): Plugin name: simple-file-list; Upload Post Path: /wp-content/plugins/simple-file-list/ee-upload-engine.php; Upload GET Path: /wp-content/uploads/simple-file-list; Uploaded File: fr34k.png; 2nd Post Path: /wp-content/plugins/simple-file-list/ee-file-engine.php; 2nd Referrer Route: /wp-admin/admin.php?page=ee-simple-file-list&tab=file_list&eeListID=1
 
 ### Step4
 
@@ -120,7 +120,7 @@ The file retains its original name; it only changes its extension, so we should 
 
 A(1) - `119.241.22.121`
 A(2):`168.22.54.119`
-A(3): Plugin name: simple-file-list; Upload Post Path: /wp-content/plugins/simple-file-list/ee-upload-engine.php; Upload GET Path: /wp-content/uploads/simple-file-list; Uploaded File: fr34k.png; 2nd Post Path: /wp-content/plugins/simple-file-list/ee-file-engine.php; 2nd Referrer URL: [hxxp[://]172[.]21[.]0[.]3/wp-admin/admin[.]php?page=ee-simple-file-list&tab=file_list&eeListID=1](hxxp[://]172[.]21[.]0[.]3/wp-admin/admin[.]php?page=ee-simple-file-list&tab=file_list&eeListID=1); Renamed-to: fr34k.php
+A(3): Plugin name: simple-file-list; Upload Post Path: /wp-content/plugins/simple-file-list/ee-upload-engine.php; Upload GET Path: /wp-content/uploads/simple-file-list; Uploaded File: fr34k.png; 2nd Post Path: /wp-content/plugins/simple-file-list/ee-file-engine.php; 2nd Referrer Route: /wp-admin/admin.php?page=ee-simple-file-list&tab=file_list&eeListID=1; Renamed-to: fr34k.php
 
 Let’s keep investigating.
 
@@ -168,7 +168,7 @@ An attempt at RCE, which we’re not sure was successful.
 ### Step6
 
 Lets take a look at A(03)
-A(3): `Plugin name: simple-file-list; Upload Post Path: /wp-content/plugins/simple-file-list/ee-upload-engine.php; Upload GET Path: /wp-content/uploads/simple-file-list; Uploaded File: fr34k.png; 2nd Post Path: /wp-content/plugins/simple-file-list/ee-file-engine.php; 2nd Referrer URL: hxxp[://]172[.]21[.]0[.]3/wp-admin/admin[.]php?page=ee-simple-file-list&tab=file_list&eeListID=1`
+A(3): `Plugin name: simple-file-list; Upload Post Path: /wp-content/plugins/simple-file-list/ee-upload-engine.php; Upload GET Path: /wp-content/uploads/simple-file-list; Uploaded File: fr34k.png; 2nd Post Path: /wp-content/plugins/simple-file-list/ee-file-engine.php; 2nd Referrer Route: /wp-admin/admin.php?page=ee-simple-file-list&tab=file_list&eeListID=1`
 
 We can start by searching for the plugin name. Let’s see what activity surrounds it
 Let’s grep to see what IPs are related to it
@@ -204,7 +204,7 @@ Let’s add to our list of artefacts
 
 A(1) - `119.241.22.121`
 A(2):`168.22.54.119`
-A(3): `Plugin name: simple-file-list; Upload Post Path: /wp-content/plugins/simple-file-list/ee-upload-engine.php; Upload GET Path: /wp-content/uploads/simple-file-list; Uploaded File: fr34k.png; 2nd Post Path: /wp-content/plugins/simple-file-list/ee-file-engine.php; 2nd Referrer URL: hxxp[://]172[.]21[.]0[.]3/wp-admin/admin[.]php?page=ee-simple-file-list&tab=file_list&eeListID=1; Renamed-to: fr34k.php`
+A(3): `Plugin name: simple-file-list; Upload Post Path: /wp-content/plugins/simple-file-list/ee-upload-engine.php; Upload GET Path: /wp-content/uploads/simple-file-list; Uploaded File: fr34k.png; 2nd Post Path: /wp-content/plugins/simple-file-list/ee-file-engine.php; 2nd Referrer Route: /wp-admin/admin.php?page=ee-simple-file-list&tab=file_list&eeListID=1; Renamed-to: fr34k.php`
 A(4): `103.69.55.212` 
 
 Subsequently, various POST and GET requests are sent to the fr34k.php.
