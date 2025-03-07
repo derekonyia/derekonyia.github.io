@@ -38,7 +38,7 @@ Using artefact A(1) as a search string to see the IP’s activity. The IP seems 
 
 ![image.png](/assets/Img/03/image%202.png)
 
-While investigating A(1), I found another IP sending unusual strings in a POST request
+While investigating A(1), I found another IP sending unusual strings in a POST request.
 
 ![image.png](/assets/Img/03/image%203.png)
 
